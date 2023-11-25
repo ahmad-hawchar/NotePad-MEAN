@@ -1,0 +1,25 @@
+<div class="page-container center-content">
+    <div class="global-page-container center-content">
+        <div class="auth-card">
+            <div class="auth-title flex-column ">
+                <div class="title-text">
+                    Welcome
+                </div>
+                <div class="logo">
+                    LOGO
+                </div>
+            </div>
+            <div class="response">
+                <span *ngIf="msg">{{msg}}</span>
+            </div>
+            <form [formGroup]="loginForm" class="inputs-container flex-column" (submit)="login()">
+                <input type="text" placeholder="Email" class="auth-input" formControlName="email" />
+                <input type="text" placeholder="Password" class="auth-input" formControlName="password" />
+                <app-auth-button></app-auth-button>
+            </form>
+            <div class="auth-other-page">
+                Don't have an account?<a href="/register">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>

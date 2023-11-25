@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-auth-button',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './auth-button.component.html',
+  styleUrl: './auth-button.component.css'
 })
-export class LoginComponent {
+export class AuthButtonComponent {
 
 }
