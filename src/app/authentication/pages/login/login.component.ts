@@ -4,6 +4,7 @@ import { AuthButtonComponent } from '../../shared/auth-button/auth-button.compon
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { authService } from '../../services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,15 +20,20 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private authService: authService) { }
+  constructor(private fb: FormBuilder, private authService: authService, private router: Router) { }
   login() {
     if (this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password) {
       this.authService.Login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: (e) => {
-          console.log(e)
+          if (e.message == "WrongInputs") {
+            this.msg = "email/password combo is wrong!"
+          }
+          else if (e.message == "giveAccess") {
+            this.router.navigateByUrl("")
+          }
         },
         error: (e) => {
-          console.log(e)
+          this.msg = "we had a problem logging you in, Try again later!"
         }
       })
     }

@@ -15,10 +15,10 @@
             <form [formGroup]="loginForm" class="inputs-container flex-column" (submit)="login()">
                 <input type="text" placeholder="Email" class="auth-input" formControlName="email" />
                 <input type="text" placeholder="Password" class="auth-input" formControlName="password" />
-                <app-auth-button></app-auth-button>
+                <app-auth-button [buttonText]="'LOGIN'"></app-auth-button>
             </form>
             <div class="auth-other-page">
-                Don't have an account?<a href="/register">Sign Up</a>
+                Don't have an account?<a href="/authentication/register">Sign Up</a>
             </div>
         </div>
     </div>
