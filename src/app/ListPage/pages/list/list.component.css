@@ -13,7 +13,7 @@
 
 .sidebar {
     width: 160px;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 40px;
     border-right: 1px solid #888889;
     background-color: white;
@@ -45,14 +45,24 @@
 
 .notes-container {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: white;
     padding: 40px 60px;
     border-radius: 0 30px 30px 0;
 }
 
+.logout-icon {
+    cursor: pointer;
+}
+
 .search-bar {
+    display: inline-block;
+    width: 100%;
+}
+
+.header {
     margin-bottom: 60px;
+    display: flex;
 }
 
 .title {
@@ -62,6 +72,32 @@
 
 }
 
-.note-cards-containe {
-    background-color: red;
+.note-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.note-card {
+    width: 212px;
+    height: 220px;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: aqua;
+}
+
+.card-title {
+    height: 20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.card-content {
+    height: calc(100% - 40px);
+}
+
+.card-date {
+    height: 20px;
+    text-align: center;
 }
