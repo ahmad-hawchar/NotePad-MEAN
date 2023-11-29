@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 })
 export class ListComponent {
   constructor(private router: Router) { }
-  notes: { title: string, content: string, color: string, date: string }[] = [
-    { title: "test", content: "test", color: "red", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "cyan", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "orange", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "pink", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "green", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "orange", date: Date().substring(0, 10) },
-    { title: "test", content: "test", color: "red", date: Date().substring(0, 10) }
+  notes: { title: string, textContent: string, color: string, date: string }[] = [
+    { title: "test", textContent: "test", color: "red", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "cyan", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "orange", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "pink", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "green", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "orange", date: Date().substring(0, 10) },
+    { title: "test", textContent: "test", color: "red", date: Date().substring(0, 10) }
   ]
   logout() {
     localStorage.clear();

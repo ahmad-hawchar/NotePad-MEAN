@@ -5,6 +5,13 @@
             <div class="add-button">
                 +
             </div>
+            <div class="colors-container">
+                <div style="background-color: red"></div>
+                <div style="background-color: orange;"></div>
+                <div style="background-color: green;"></div>
+                <div style="background-color: pink;"></div>
+                <div style="background-color: cyan;"></div>
+            </div>
         </div>
         <div class="notes-container">
             <div class="header">
@@ -20,7 +27,7 @@
                 <div class="note-cards-container">
                     <div class="note-card" *ngFor="let note of notes" [style.background-color]="note.color">
                         <div class="card-title">{{note.title}}</div>
-                        <div class="card-content">{{note.content}}</div>
+                        <div class="card-content">{{note.textContent}}</div>
                         <div class="card-date">{{note.date}}</div>
                     </div>
                 </div>

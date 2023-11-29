@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   msg: string = "";
   success: boolean = false;
+  e: string = ""
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
@@ -31,7 +32,6 @@ export class RegisterComponent {
           this.msg = e.message
         },
         error: (e) => {
-          console.log(e)
           this.success = e.success;
           this.msg = "we had a problem creating your account, Try again later!"
         }

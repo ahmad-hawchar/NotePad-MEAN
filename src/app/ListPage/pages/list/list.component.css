@@ -41,6 +41,19 @@
     justify-content: center;
     align-items: center;
     font-size: larger;
+    margin-bottom: 10px;
+}
+
+.colors-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.colors-container>div {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
 }
 
 .notes-container {
