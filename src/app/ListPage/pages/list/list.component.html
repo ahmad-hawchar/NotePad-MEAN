@@ -2,15 +2,34 @@
     <div class="global-page-container">
         <div class="sidebar">
             <div class="logo">AHMAD</div>
-            <div class="add-button">
-                +
-            </div>
-            <div class="colors-container">
-                <div style="background-color: red"></div>
-                <div style="background-color: orange;"></div>
-                <div style="background-color: green;"></div>
-                <div style="background-color: pink;"></div>
-                <div style="background-color: cyan;"></div>
+            <div class="animation-container">
+                <div class="add-button" (click)="handleColors()">
+                    +
+                </div>
+                <div class="colors-container">
+                    <div>
+                        <div class="color" style="background-color: red" [style.translate]="'0 '+top.red+'px'"
+                            (click)="handleAddNote('red')"></div>
+                    </div>
+                    <div>
+                        <div class="color" style="background-color: orange" [style.translate]="'0 '+top.orange+'px'"
+                            (click)="handleAddNote('orange')">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="color" style="background-color: green" [style.translate]="'0 '+top.green+'px'"
+                            (click)="handleAddNote('green')">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="color" style="background-color: pink" [style.translate]="'0 '+top.pink+'px'"
+                            (click)="handleAddNote('pink')"></div>
+                    </div>
+                    <div>
+                        <div class="color" style="background-color: cyan" [style.translate]="'0 '+top.cyan+'px'"
+                            (click)="handleAddNote('cyan')"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="notes-container">
@@ -26,9 +45,42 @@
                 <div class="title">NOTES</div>
                 <div class="note-cards-container">
                     <div class="note-card" *ngFor="let note of notes" [style.background-color]="note.color">
-                        <div class="card-title">{{note.title}}</div>
-                        <div class="card-content">{{note.textContent}}</div>
-                        <div class="card-date">{{note.date}}</div>
+
+                        <div class="card-title">
+                            <span [style.display]="!note.editing?'none':'inline'">
+                                <input #titleinput type="text" maxlength="23" placeholder="enter a title"
+                                    [value]="note.textContent" class="titleEdit" />
+                            </span>
+                            <span *ngIf="!note.editing">{{note.textContent}}</span>
+                        </div>
+
+                        <div class="card-content">
+                            <span [style.display]="!note.editing?'none':'inline'">
+                                <textarea #contentinput type="text" maxlength="270" class="contentEdit"
+                                    placeholder="enter text">{{note.textContent}}</textarea>
+                            </span>
+                            <span *ngIf="!note.editing">{{note.textContent}}</span>
+                        </div>
+
+                        <div class="card-date">
+                            {{note.date}}
+                            <button class="edit-btn" *ngIf="!note.editing;else save" (click)="note.editing=true">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512">
+                                    <path fill="#ffffff"
+                                        d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" />
+                                </svg>
+                            </button>
+                            <ng-template #save>
+                                <button class="edit-btn"
+                                    (click)="note.editing=false;handleEdit(note._id,titleinput.value,contentinput.value,note.color)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+                                        viewBox="0 0 448 512">
+                                        <path fill="#ffffff"
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg>
+                                </button>
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
             </div>
