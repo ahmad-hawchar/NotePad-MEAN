@@ -3,6 +3,6 @@ export interface list {
     title: string,
     textContent: string,
     color: string,
-    date: string,
+    AddedOn: string,
     editing: boolean
 }

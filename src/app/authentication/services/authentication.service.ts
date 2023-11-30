@@ -10,10 +10,6 @@ export class authService {
 
   Login(email: string, password: string) {
     return this.http.post(this.url + "/login", { email: email, password: password }).pipe(map((res: any) => {
-      if (res.success && res.result) {
-        console.log(res)
-        localStorage.setItem("userId", res.result)
-      }
       return res;
     }));
   }

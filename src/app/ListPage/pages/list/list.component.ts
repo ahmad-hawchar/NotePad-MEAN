@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class ListComponent {
   constructor(private router: Router, private userService: userService) { }
   toggleColors: boolean = false;
+  msg: string = "";
   top: colors = {
     red: 70,
     orange: 70,
@@ -24,15 +25,7 @@ export class ListComponent {
     cyan: 70,
   };
 
-  notes: list[] = [
-    { _id: "1", title: "test", textContent: "test", color: "red", date: Date().substring(0, 10), editing: false },
-    { _id: "2", title: "test", textContent: "test", color: "cyan", date: Date().substring(0, 10), editing: false },
-    { _id: "3", title: "test", textContent: "test", color: "orange", date: Date().substring(0, 10), editing: false },
-    { _id: "4", title: "test", textContent: "test", color: "pink", date: Date().substring(0, 10), editing: false },
-    { _id: "5", title: "test", textContent: "test", color: "green", date: Date().substring(0, 10), editing: false },
-    { _id: "6", title: "test", textContent: "test", color: "orange", date: Date().substring(0, 10), editing: false },
-    { _id: "7", title: "test", textContent: "test", color: "red", date: Date().substring(0, 10), editing: false }
-  ]
+  notes: list[] = []
   handleColors() {
     this.toggleColors = !this.toggleColors;
     if (!this.toggleColors) {
@@ -54,9 +47,19 @@ export class ListComponent {
     }
 
   }
-
+  getList() {
+    this.userService.getList().subscribe({
+      next: (e) => {
+        if (e.success) this.notes = e.message.list.reverse()
+        else this.msg = e.message
+      },
+      error: (e) => {
+        this.msg = e.message
+      }
+    })
+  }
   handleAddNote(color: string) {
-    let temp = { _id: "", title: "", textContent: "", color: color, date: Date().substring(0, 10), editing: true };
+    let temp = { _id: "", title: "", textContent: "", color: color, AddedOn: Date().substring(0, 10), editing: true };
     this.notes.unshift(temp);
   }
 
@@ -65,18 +68,20 @@ export class ListComponent {
       this.userService.editList(id, title, content).subscribe({
         next: (e: any) => {
           console.log(e)
+          this.getList();
         },
         error: (e: any) => {
-          console.log(e)
+          this.msg = "we had an error editing your note"
         }
       })
     else {
       this.userService.addToList(content, title, color).subscribe({
         next: (e: any) => {
           console.log(e)
+          this.getList();
         },
         error: (e: any) => {
-          console.log(e)
+          this.msg = "we had an error adding your note"
         }
       })
     }
@@ -86,4 +91,8 @@ export class ListComponent {
     localStorage.clear();
     this.router.navigateByUrl("/authentication")
   }
+  ngOnInit(): void {
+    this.getList();
+  }
 }
+

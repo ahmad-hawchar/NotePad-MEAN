@@ -29,6 +29,7 @@ export class LoginComponent {
             this.msg = "email/password combo is wrong!"
           }
           else if (e.message == "giveAccess") {
+            localStorage.setItem("userId", e.result);
             this.router.navigateByUrl("")
           }
         },

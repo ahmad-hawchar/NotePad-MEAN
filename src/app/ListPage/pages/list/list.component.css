@@ -134,6 +134,10 @@
     height: calc(100% - 50px);
 }
 
+.card-content>span {
+    word-break: break-all;
+}
+
 .card-date {
     height: 30px;
     text-align: center;

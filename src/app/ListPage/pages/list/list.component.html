@@ -43,15 +43,16 @@
             </div>
             <div class="notes">
                 <div class="title">NOTES</div>
-                <div class="note-cards-container">
+                <div *ngIf="msg"> {{msg}}</div>
+                <div class="note-cards-container" *ngIf="notes">
                     <div class="note-card" *ngFor="let note of notes" [style.background-color]="note.color">
 
                         <div class="card-title">
                             <span [style.display]="!note.editing?'none':'inline'">
                                 <input #titleinput type="text" maxlength="23" placeholder="enter a title"
-                                    [value]="note.textContent" class="titleEdit" />
+                                    [value]="note.title" class="titleEdit" />
                             </span>
-                            <span *ngIf="!note.editing">{{note.textContent}}</span>
+                            <span *ngIf="!note.editing">{{note.title}}</span>
                         </div>
 
                         <div class="card-content">
@@ -63,7 +64,7 @@
                         </div>
 
                         <div class="card-date">
-                            {{note.date}}
+                            {{note.AddedOn.slice(0,10)}}
                             <button class="edit-btn" *ngIf="!note.editing;else save" (click)="note.editing=true">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512">
                                     <path fill="#ffffff"
