@@ -50,7 +50,7 @@ export class ListComponent {
   getList() {
     this.userService.getList().subscribe({
       next: (e) => {
-        if (e.success) this.notes = e.message.list.reverse()
+        if (e.success) this.notes = e.message.list.reverse(), this.msg = "";
         else this.msg = e.message
       },
       error: (e) => {

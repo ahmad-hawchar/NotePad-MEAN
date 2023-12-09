@@ -43,6 +43,8 @@ const AddToList = async (u_Id, msg, title, color) => {
                     AddedOn: new Date(),
                     textContent: msg,
                     WorkedOn: false,
+                    title: title,
+                    color: color
                 }]
             })
             let temp = await newItem.save();
